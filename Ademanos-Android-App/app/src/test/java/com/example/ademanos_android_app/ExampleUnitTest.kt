@@ -1,4 +1,4 @@
-package com.example.ademanos
+package com.example.ademanos_android_app
 
 import org.junit.Test
 
