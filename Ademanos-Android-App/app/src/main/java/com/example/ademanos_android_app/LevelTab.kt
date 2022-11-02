@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.ademanos_android_app.ui.theme.QuizQuestion
 
 
 @Composable
@@ -52,7 +53,7 @@ fun OptionCard(
 
 @Composable
 fun OptionCardGrid(
-    question:String,
+    quizQuestion: QuizQuestion,
     modifier: Modifier = Modifier
 ){
     Surface(
@@ -69,7 +70,7 @@ fun OptionCardGrid(
                 .padding(top = 20.dp)
         ) {
             Text(
-                text = question.uppercase(),
+                text = quizQuestion.question.uppercase(),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier,
                 color = MaterialTheme.colorScheme.primaryContainer
@@ -83,15 +84,15 @@ fun OptionCardGrid(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     modifier=Modifier
                 ) {
-                    OptionCard(text = "Test", color = MaterialTheme.colorScheme.primary)
-                    OptionCard(text = "Test", color = MaterialTheme.colorScheme.secondary)
+                    OptionCard(text = quizQuestion.options[0], color = MaterialTheme.colorScheme.primary)
+                    OptionCard(text = quizQuestion.options[1], color = MaterialTheme.colorScheme.secondary)
                 }
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     modifier=Modifier
                 ) {
-                    OptionCard(text = "Test", color = MaterialTheme.colorScheme.tertiary)
-                    OptionCard(text = "Test", color = MaterialTheme.colorScheme.error)
+                    OptionCard(text = quizQuestion.options[2], color = MaterialTheme.colorScheme.tertiary)
+                    OptionCard(text = quizQuestion.options[3], color = MaterialTheme.colorScheme.error)
                 }
             }
         }
@@ -115,12 +116,12 @@ fun SignImage(
 
 @Composable
 fun LevelTab(
-    level:Int,
+    quizQuestion: QuizQuestion,
     modifier: Modifier = Modifier
 ){
     Column(modifier = modifier) {
         Text(
-            text = "Nivel $level",
+            text = "Nivel ${quizQuestion.levelNumber}",
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,
             color =  MaterialTheme.colorScheme.primary,
@@ -133,8 +134,56 @@ fun LevelTab(
                 .verticalScroll(rememberScrollState())
         ) {
             SignImage(R.drawable.number_1,modifier=Modifier.padding(vertical = 10.dp))
-            OptionCardGrid("Test question",modifier=Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
+            OptionCardGrid(quizQuestion,modifier=Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
         }
+        LevelBottomNavigation()
+    }
+}
+
+@Composable
+private fun LevelBottomNavigation(modifier: Modifier = Modifier) {
+    NavigationBar(
+        modifier=modifier
+    ){
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.book_solid),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(30.dp)
+                )
+            },
+            selected = false,
+            onClick = { /*TODO*/ }
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.gamepad_solid),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(30.dp)
+                )
+            },
+            selected = true,
+            onClick = { /*TODO*/ }
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    painter = painterResource(R.drawable.user_solid),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(30.dp)
+                )
+            },
+            selected = false,
+            onClick = { /*TODO*/ }
+        )
     }
 }
 
@@ -147,7 +196,13 @@ fun OptionCardPreview() {
 @Preview(showBackground = true)
 @Composable
 fun OptionCardGridPreview() {
-    OptionCardGrid("Test question")
+    val testQuestion = QuizQuestion(
+        1,
+        "Test question", arrayOf(
+            "Option 1","Option 2","Option 3","Option 4"
+            ),
+        "Option 1")
+    OptionCardGrid(testQuestion)
 }
 
 @Preview(showBackground = true)
@@ -159,5 +214,17 @@ fun SignImagePreview() {
 @Preview(showBackground = true)
 @Composable
 fun LevelTabPreview() {
-    LevelTab(1)
+    val testQuestion = QuizQuestion(
+        1,
+        "Test question", arrayOf(
+            "Option 1","Option 2","Option 3","Option 4"
+        ),
+        "Option 1")
+    LevelTab(testQuestion)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LevelBottomNavigationPreview() {
+    LevelBottomNavigation()
 }
