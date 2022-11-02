@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     var testQuestion = QuizQuestion(
                         1,
+                        R.drawable.number_1,
                         "Test question", arrayOf<String>(
                             "Option 1","Option 2","Option 3","Option 4"
                         ),

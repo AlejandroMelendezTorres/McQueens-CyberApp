@@ -133,7 +133,7 @@ fun LevelTab(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            SignImage(R.drawable.number_1,modifier=Modifier.padding(vertical = 10.dp))
+            SignImage(quizQuestion.drawable,modifier=Modifier.padding(vertical = 10.dp))
             OptionCardGrid(quizQuestion,modifier=Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
         }
         LevelBottomNavigation()
@@ -198,6 +198,7 @@ fun OptionCardPreview() {
 fun OptionCardGridPreview() {
     val testQuestion = QuizQuestion(
         1,
+        R.drawable.number_1,
         "Test question", arrayOf(
             "Option 1","Option 2","Option 3","Option 4"
             ),
@@ -216,6 +217,7 @@ fun SignImagePreview() {
 fun LevelTabPreview() {
     val testQuestion = QuizQuestion(
         1,
+        R.drawable.number_1,
         "Test question", arrayOf(
             "Option 1","Option 2","Option 3","Option 4"
         ),
