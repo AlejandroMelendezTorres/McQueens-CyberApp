@@ -1,5 +1,3 @@
-@file:Suppress("NAME_SHADOWING")
-
 package com.example.ademanos_android_app.levelTab
 
 import androidx.compose.foundation.layout.*
@@ -11,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.style.TextAlign
-import com.example.ademanos_android_app.components.BottomNavigation
 import com.example.ademanos_android_app.components.MediaItem
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.ademanos_android_app.TEST_IMAGE
@@ -40,7 +37,6 @@ fun LevelTab(
             MediaItem(quizQuestion.media,modifier=Modifier.padding(vertical = 10.dp))
             OptionCardGrid(quizQuestion,modifier=Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
         }
-        BottomNavigation(2)
     }
 }
 
@@ -83,10 +79,4 @@ fun LevelTabPreview() {
         "Nivel 1",
         testQuestion
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LevelBottomNavigationPreview() {
-    BottomNavigation(2)
 }

@@ -3,13 +3,14 @@ package com.example.ademanos_android_app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.example.ademanos_android_app.levelTab.LevelTab
 import com.example.ademanos_android_app.models.Question
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     val testQuestion = Question(
                         "test",
                         TEST_VIDEO,
@@ -31,25 +33,60 @@ class MainActivity : ComponentActivity() {
                         arrayOf("1","2","3","4"),
                         1
                     )
-                    LevelTab(
-                        "Nivel 1",
-                        testQuestion
-                    )
+
+                    val dictionaryTabScreen= BottomNavScreen("Dictionary Tab",R.drawable.book_solid
+                    ) {  }
+
+                    val levelTabScreen= BottomNavScreen("Level Tab",R.drawable.gamepad_solid
+                    ) { LevelTab("Nivel 1", testQuestion) }
+
+                    val profileTabScreen= BottomNavScreen("Profile Tab",R.drawable.user_solid
+                    ) { }
+
+                    val screens = listOf(dictionaryTabScreen,levelTabScreen,profileTabScreen)
+                    BottomNavigation(screens)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+data class BottomNavScreen(
+    val label: String,
+    @DrawableRes val icon: Int,
+    val component: @Composable () -> Unit
+)
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    AdemanosAndroidAppTheme {
-        Greeting("Android")
+fun BottomNavigation(
+    screens: List<BottomNavScreen>,
+    modifier: Modifier = Modifier
+) {
+    var selectedScreen by remember { mutableStateOf(0) }
+    Column(modifier = modifier) {
+        Surface(
+            modifier= Modifier
+        ) {
+            screens[selectedScreen].component()
+        }
+        NavigationBar(
+            modifier=Modifier
+        ){
+            for (i in screens.indices) {
+                NavigationBarItem(
+                    icon = {
+                        Icon(
+                            painter = painterResource(screens[i].icon),
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(30.dp)
+                        )
+                    },
+                    onClick = { selectedScreen = i },
+                    selected = selectedScreen==i
+                )
+            }
+        }
     }
 }
