@@ -10,9 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImagePainter.State.Empty.painter
-import com.example.ademanos_android_app.levelTab.LevelTab
-import com.example.ademanos_android_app.models.Question
+import com.example.ademanos_android_app.levelTab.LevelManager
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,20 +23,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    val testQuestion = Question(
-                        "test",
-                        TEST_VIDEO,
-                        "¿Qué numero es este?",
-                        arrayOf("1","2","3","4"),
-                        1
-                    )
-
                     val dictionaryTabScreen= BottomNavScreen("Dictionary Tab",R.drawable.book_solid
                     ) {  }
 
                     val levelTabScreen= BottomNavScreen("Level Tab",R.drawable.gamepad_solid
-                    ) { LevelTab("Nivel 1", testQuestion) }
+                    ) { LevelManager(TEST_QUIZ) }
 
                     val profileTabScreen= BottomNavScreen("Profile Tab",R.drawable.user_solid
                     ) { }

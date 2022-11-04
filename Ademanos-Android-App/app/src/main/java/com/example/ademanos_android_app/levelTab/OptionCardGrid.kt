@@ -14,6 +14,7 @@ import com.example.ademanos_android_app.models.Question
 @Composable
 fun OptionCardGrid(
     quizQuestion: Question,
+    onSelect: (result: Boolean?) -> Unit,
     modifier: Modifier = Modifier
 ){
     Surface(
@@ -48,12 +49,14 @@ fun OptionCardGrid(
                         text = quizQuestion.options[0],
                         color = MaterialTheme.colorScheme.primary,
                         index = 0,
-                        onclick = { /*TODO*/ })
+                        onclick = { evaluateAnswer(0,quizQuestion,onSelect) }
+                    )
                     OptionCard(
                         text = quizQuestion.options[1],
                         color = MaterialTheme.colorScheme.secondary,
                         index = 1,
-                        onclick = { /*TODO*/ })
+                        onclick = { evaluateAnswer(1,quizQuestion,onSelect) }
+                    )
                 }
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -63,14 +66,27 @@ fun OptionCardGrid(
                         text = quizQuestion.options[2],
                         color = MaterialTheme.colorScheme.tertiary,
                         index = 2,
-                        onclick = { /*TODO*/ })
+                        onclick = { evaluateAnswer(2,quizQuestion,onSelect) }
+                    )
                     OptionCard(
                         text = quizQuestion.options[3],
                         color = MaterialTheme.colorScheme.error,
                         index = 3,
-                        onclick = { /*TODO*/ })
+                        onclick = { evaluateAnswer(3,quizQuestion,onSelect) }
+                    )
                 }
             }
         }
     }
+}
+
+fun evaluateAnswer(
+    index: Int,
+    quizQuestion: Question,
+    onSelect: (result: Boolean?) -> Unit)
+{
+    if (quizQuestion.answer==index){
+        onSelect.invoke(true)
+    }
+    onSelect.invoke(false)
 }

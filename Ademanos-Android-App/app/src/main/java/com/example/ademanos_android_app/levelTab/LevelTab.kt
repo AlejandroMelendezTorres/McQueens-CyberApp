@@ -1,7 +1,9 @@
 package com.example.ademanos_android_app.levelTab
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -18,6 +20,7 @@ import com.example.ademanos_android_app.models.Question
 fun LevelTab(
     quizTitle: String,
     quizQuestion: Question,
+    onSelect: (result: Boolean?) -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(modifier = modifier) {
@@ -35,48 +38,7 @@ fun LevelTab(
                 .verticalScroll(rememberScrollState())
         ) {
             MediaItem(quizQuestion.media,modifier=Modifier.padding(vertical = 10.dp))
-            OptionCardGrid(quizQuestion,modifier=Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
+            OptionCardGrid(quizQuestion, onSelect,Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun OptionCardPreview() {
-    OptionCard("Test",MaterialTheme.colorScheme.primary, 1,{})
-}
-
-@Preview(showBackground = true)
-@Composable
-fun OptionCardGridPreview() {
-    val testQuestion = Question(
-        "test",
-        TEST_IMAGE,
-        "¿Qué numero es este?",
-        arrayOf("1","2","3","4"),
-        1
-    )
-    OptionCardGrid(testQuestion)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignImagePreview() {
-    MediaItem(TEST_IMAGE)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LevelTabPreview() {
-    val testQuestion = Question(
-        "test",
-        TEST_IMAGE,
-        "¿Qué numero es este?",
-        arrayOf("1","2","3","4"),
-        1
-    )
-    LevelTab(
-        "Nivel 1",
-        testQuestion
-    )
 }
