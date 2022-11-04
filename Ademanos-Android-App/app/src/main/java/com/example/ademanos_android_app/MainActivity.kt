@@ -3,13 +3,12 @@ package com.example.ademanos_android_app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.ademanos_android_app.levelTab.LevelManager
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +21,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val dictionaryTabScreen= BottomNavScreen("Dictionary Tab",R.drawable.book_solid
+                    ) {  }
+
+                    val levelTabScreen= BottomNavScreen("Level Tab",R.drawable.gamepad_solid
+                    ) { LevelManager(TEST_QUIZ) }
+
+                    val profileTabScreen= BottomNavScreen("Profile Tab",R.drawable.user_solid
+                    ) { }
+
+                    val screens = listOf(dictionaryTabScreen,levelTabScreen,profileTabScreen)
+                    BottomNavigation(screens)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AdemanosAndroidAppTheme {
-        Greeting("Android")
-    }
-}
+data class BottomNavScreen(
+    val label: String,
+    @DrawableRes val icon: Int,
+    val component: @Composable () -> Unit
+)
