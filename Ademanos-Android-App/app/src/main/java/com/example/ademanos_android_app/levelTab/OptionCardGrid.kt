@@ -19,7 +19,7 @@ fun OptionCardGrid(
 ){
     Surface(
         modifier = modifier
-            .height(280.dp)
+            .height(250.dp)
             .width(380.dp),
         shape = RoundedCornerShape(12.dp),
         color= MaterialTheme.colorScheme.onPrimaryContainer
@@ -28,7 +28,7 @@ fun OptionCardGrid(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier= Modifier
-                .padding(top = 20.dp)
+                .padding(top = 5.dp)
         ) {
             Text(
                 text = quizQuestion.prompt.uppercase(),
@@ -39,7 +39,7 @@ fun OptionCardGrid(
             Row(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier= Modifier
-                    .padding(top = 20.dp)
+                    .padding(top = 5.dp)
             ) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),

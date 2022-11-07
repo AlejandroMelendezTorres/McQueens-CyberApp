@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Ademanos-Android-App</string>
+    <string name="app_title">AdeManos</string>
+    <string name="email_field_label">Email</string>
+    <string name="password_field_label">Contraseña</string>
+    <string name="login_button_label">Iniciar Sesión</string>
+    <string name="logo_description">Logo de la Aplicación</string>
+    <string name="email_supporting_text">Ingresa un correo valido</string>
+    <string name="password_supporting_text">Minimo 8 caracteres</string>
+    <string name="login_failure_message">Ocurrió un error, verifica tu información</string>
+    <string name="loading_label">Cargando...</string>
 </resources>

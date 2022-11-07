@@ -21,7 +21,9 @@ fun LevelManager(
     var popupText by remember { mutableStateOf ("Respuesta incorrecta")}
     var popupButtonText by remember { mutableStateOf ("Intentar de nuevo")}
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier
+        .fillMaxSize(),
+        ) {
         Surface(
             modifier= Modifier
         ) {
@@ -39,23 +41,25 @@ fun LevelManager(
                     popupControl=true
                 },
                 Modifier)
+
+            if (popupControl) {
+                PopupWindowDialog (
+                    result = { result ->
+                        if (result != null) {
+                            popupControl = result
+                            if (correctAnswer){
+                                currentLevel += 1
+                                correctAnswer=false
+                                popupText = "Respuesta incorrecta"
+                                popupButtonText = "Intentar de nuevo"
+                            }
+                        }
+                    },
+                    title = popupText,
+                    buttonMessage = popupButtonText
+                )
+            }
         }
-    }
-    if (popupControl) {
-        PopupWindowDialog (
-            { result ->
-                if (result != null) {
-                    popupControl = result
-                    if (correctAnswer){
-                        currentLevel += 1
-                        correctAnswer=false
-                        popupText = "Respuesta incorrecta"
-                        popupButtonText = "Intentar de nuevo"
-                    }
-                }
-            },
-            popupText,
-            popupButtonText)
     }
 }
 
@@ -64,17 +68,17 @@ fun LevelManager(
 fun PopupWindowDialog(
     result: (result: Boolean?) -> Unit,
     title: String,
-    buttonMessage: String
+    buttonMessage: String,
+    modifier: Modifier=Modifier
 ) {
     Popup(
         alignment = Alignment.BottomCenter,
         onDismissRequest = { result.invoke(false) }
     ) {
         Surface(
-            modifier = Modifier
-                .height(280.dp)
-                .width(370.dp)
-                .offset(0.dp, (-12).dp),
+            modifier = modifier
+                .height(250.dp)
+                .width(370.dp),
             shape = RoundedCornerShape(12.dp),
             color = MaterialTheme.colorScheme.onPrimaryContainer
         ) {
