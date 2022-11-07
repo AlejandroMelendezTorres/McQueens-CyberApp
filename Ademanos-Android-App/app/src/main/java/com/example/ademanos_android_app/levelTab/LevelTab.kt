@@ -38,7 +38,7 @@ fun LevelTab(
                 .verticalScroll(rememberScrollState())
         ) {
             MediaItem(quizQuestion.media,modifier=Modifier.padding(vertical = 10.dp))
-            OptionCardGrid(quizQuestion, onSelect,Modifier.padding(vertical = 10.dp, horizontal = 10.dp))
+            OptionCardGrid(quizQuestion, onSelect,Modifier.padding(horizontal = 10.dp))
         }
     }
 }
