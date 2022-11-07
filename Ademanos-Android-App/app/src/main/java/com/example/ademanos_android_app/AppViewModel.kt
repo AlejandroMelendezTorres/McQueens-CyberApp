@@ -18,8 +18,6 @@ class AppViewModel : ViewModel() {
     private val _snackbarHostState = SnackbarHostState()
     val snackbarHostState: SnackbarHostState get() = _snackbarHostState
 
-    //val coroutineScope get() = viewModelScope
-
     fun selectScreen(i: Int) {
         if (loginLoading) return
         _selectedScreen = i
