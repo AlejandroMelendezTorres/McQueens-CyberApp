@@ -51,6 +51,8 @@ class LevelViewModel: ViewModel() {
     fun evaluateQuizResult(result: Boolean, numberOfQuestions:Int): Boolean {
         if (result){
             if (currentLevel==numberOfQuestions-1){
+                onCorrectAnswerChange(true)
+                onPopupTextChange("Respuesta Correcta","Continuar")
                 return true
             }
             onCorrectAnswerChange(true)

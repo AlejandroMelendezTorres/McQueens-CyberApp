@@ -31,6 +31,7 @@ fun LevelScreen(
                     if (result != null) {
                         var finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
                         if (finishedLevel){
+                            /*CURRENTLY THE APP CRASHES HERE*/
                             /*TODO: MARK LEVEL AS COMPLETE AND RETURN TO LEVEL SELECTION*/
                         }
                     }
