@@ -11,7 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ademanos_android_app.levelTab.LevelManager
+import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 
@@ -34,7 +34,7 @@ fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
 
         val levelTabScreen = BottomNavScreen(
             "Level Tab", R.drawable.gamepad_solid
-        ) { LevelManager(TEST_QUIZ) }
+        ) { LevelScreen(TEST_QUIZ) }
 
         val profileTabScreen = BottomNavScreen(
             "Profile Tab", R.drawable.user_solid
