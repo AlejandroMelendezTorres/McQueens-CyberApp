@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ademanos-Android-App</string>
+    <string name="title_activity_profile_tab">profileTab</string>
 </resources>
