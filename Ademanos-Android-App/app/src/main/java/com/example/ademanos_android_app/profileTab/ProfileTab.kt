@@ -2,12 +2,7 @@ package com.example.ademanos_android_app.profileTab
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,24 +17,6 @@ import md_theme_light_checkedTrack
 import md_theme_light_onSurfaceVariant
 import md_theme_light_outline
 import md_theme_light_primary
-
-
-//class ProfileTab : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            AdemanosAndroidAppTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
-//        }
-//    }
-//}
 
 @Composable
 fun ProfileTab(
@@ -171,12 +148,9 @@ fun ProfileTab(
                 modifier = Modifier.padding(vertical = 13.5.dp, horizontal = 20.dp),
             )
             val checkedState = remember { mutableStateOf(true) }
-//            var placeHolderN: Boolean
-//            Spacer(modifier = Modifier.width(20.dp))
             Switch(
                 checked = checkedState.value,
                 onCheckedChange = { checkedState.value = false },
-//                modifier = Modifier.padding(vertical = 10.dp)
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = md_theme_light_primary,
                     uncheckedThumbColor = md_theme_light_onSurfaceVariant,
@@ -185,7 +159,6 @@ fun ProfileTab(
                 )
             )
         }
-//        Spacer(modifier = Modifier.width(50.dp))
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
