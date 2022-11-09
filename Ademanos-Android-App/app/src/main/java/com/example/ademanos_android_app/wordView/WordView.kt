@@ -13,7 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.ademanos_android_app.components.MediaItem
 import com.example.ademanos_android_app.models.Word
-import com.google.android.exoplayer2.text.Cue.VerticalType
 
 @Composable
 fun WordView(word : Word){
