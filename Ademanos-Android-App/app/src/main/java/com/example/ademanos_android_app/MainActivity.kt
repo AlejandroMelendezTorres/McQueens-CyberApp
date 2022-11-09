@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
-import com.example.ademanos_android_app.profileTab.ProfileTab
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 
 class MainActivity : ComponentActivity() {
