@@ -16,7 +16,7 @@ import com.example.ademanos_android_app.models.Word
 import com.google.android.exoplayer2.text.Cue.VerticalType
 
 @Composable
-fun wordView(word : Word){
+fun WordView(word : Word){
     Column() {
         Text(
             text = word.name,
