@@ -40,7 +40,7 @@ fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
 
         val profileTabScreen = BottomNavScreen(
             "Profile Tab", R.drawable.user_solid
-        ) { ProfileTab() }
+        ) { LoginScreen() }
 
         val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen)
         Scaffold(
