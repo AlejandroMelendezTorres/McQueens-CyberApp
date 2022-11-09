@@ -150,7 +150,7 @@ fun ProfileTab(
             val checkedState = remember { mutableStateOf(true) }
             Switch(
                 checked = checkedState.value,
-                onCheckedChange = { checkedState.value = false },
+                onCheckedChange = { checkedState.value = !checkedState.value },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = md_theme_light_primary,
                     uncheckedThumbColor = md_theme_light_onSurfaceVariant,
