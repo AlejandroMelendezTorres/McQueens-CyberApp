@@ -8,54 +8,48 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ademanos_android_app.AppViewModel
 import com.example.ademanos_android_app.models.Quiz
 
 @Composable
-fun LevelManager(
+fun LevelScreen(
     quiz: Quiz,
+    levelViewModel: LevelViewModel = viewModel(),
+    appViewModel: AppViewModel = viewModel(),
     modifier: Modifier = Modifier
 ){
-    var currentLevel by remember { mutableStateOf(0) }
-    var popupControl by remember { mutableStateOf(false) }
-    var correctAnswer by remember { mutableStateOf (false)}
-    var popupText by remember { mutableStateOf ("Respuesta incorrecta")}
-    var popupButtonText by remember { mutableStateOf ("Intentar de nuevo")}
-
-    Column(modifier = modifier) {
+    Column(modifier = modifier
+        .fillMaxSize(),
+        ) {
         Surface(
             modifier= Modifier
         ) {
-            LevelTab(quiz.title,
-                quiz.questions[currentLevel],
+            LevelCard(quiz.title,
+                quiz.questions[levelViewModel.currentLevel],
                 { result ->
-                    if (result == true){
-                        if (currentLevel==quiz.questions.size-1){
+                    if (result != null) {
+                        var finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
+                        if (finishedLevel){
+                            /*CURRENTLY THE APP CRASHES HERE*/
                             /*TODO: MARK LEVEL AS COMPLETE AND RETURN TO LEVEL SELECTION*/
                         }
-                        correctAnswer = true
-                        popupText = "Respuesta Correcta"
-                        popupButtonText = "Continuar"
                     }
-                    popupControl=true
                 },
                 Modifier)
+
+            if (levelViewModel.popupControl) {
+                PopupWindowDialog (
+                    result = { result ->
+                        if (result != null) {
+                            levelViewModel.evaluatePopupControl(result)
+                        }
+                    },
+                    title = levelViewModel.popupText,
+                    buttonMessage = levelViewModel.popupButtonText
+                )
+            }
         }
-    }
-    if (popupControl) {
-        PopupWindowDialog (
-            { result ->
-                if (result != null) {
-                    popupControl = result
-                    if (correctAnswer){
-                        currentLevel += 1
-                        correctAnswer=false
-                        popupText = "Respuesta incorrecta"
-                        popupButtonText = "Intentar de nuevo"
-                    }
-                }
-            },
-            popupText,
-            popupButtonText)
     }
 }
 
@@ -64,17 +58,17 @@ fun LevelManager(
 fun PopupWindowDialog(
     result: (result: Boolean?) -> Unit,
     title: String,
-    buttonMessage: String
+    buttonMessage: String,
+    modifier: Modifier=Modifier
 ) {
     Popup(
         alignment = Alignment.BottomCenter,
         onDismissRequest = { result.invoke(false) }
     ) {
         Surface(
-            modifier = Modifier
-                .height(280.dp)
-                .width(370.dp)
-                .offset(0.dp, (-12).dp),
+            modifier = modifier
+                .height(250.dp)
+                .width(370.dp),
             shape = RoundedCornerShape(12.dp),
             color = MaterialTheme.colorScheme.onPrimaryContainer
         ) {
