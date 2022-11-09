@@ -1,11 +1,17 @@
 import os
 from firebase_admin import credentials, initialize_app, storage, firestore
 
-cred = credentials.Certificate("C://Users//alexm//OneDrive//Escritorio//Upload Videos LSM//ademanos-f242e-firebase-adminsdk-ioge2-7628de8967.json")
+print("Ingresar Path de las credenciales del FireBase")
+creden = str(input(">>> "))
+
+print("\nIngresar Path de la carpeta de videos")
+path = input(">>> ")
+
+print("")
+
+cred = credentials.Certificate(creden)
 initialize_app(cred, {'storageBucket': 'ademanos-f242e.appspot.com'})
 db = firestore.client()
-
-path = "C://Users//alexm//OneDrive//Escritorio//Upload Videos LSM//videos"
 
 dir_list = os.listdir(path)
 
