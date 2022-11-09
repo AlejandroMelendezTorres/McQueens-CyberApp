@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.example.ademanos_android_app.levelTab.LevelManager
+import com.example.ademanos_android_app.profileTab.ProfileTab
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     ) { LevelManager(TEST_QUIZ) }
 
                     val profileTabScreen= BottomNavScreen("Profile Tab",R.drawable.user_solid
-                    ) { }
+                    ) { ProfileTab() }
 
                     val screens = listOf(dictionaryTabScreen,levelTabScreen,profileTabScreen)
                     BottomNavigation(screens)

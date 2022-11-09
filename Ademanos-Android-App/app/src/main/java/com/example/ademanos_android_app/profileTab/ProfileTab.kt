@@ -1,25 +1,26 @@
 package com.example.ademanos_android_app.profileTab
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Switch
+import androidx.compose.material.SwitchDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ademanos_android_app.components.MediaItem
-import com.example.ademanos_android_app.levelTab.OptionCardGrid
-import com.example.ademanos_android_app.models.Question
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
+import md_theme_light_checkedTrack
+import md_theme_light_onSurfaceVariant
+import md_theme_light_outline
+import md_theme_light_primary
+
 
 //class ProfileTab : ComponentActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,90 +44,132 @@ fun ProfileTab(
     modifier: Modifier = Modifier
 ){
     Column(modifier = modifier) {
-        androidx.compose.material3.Text(
+        Text(
             text = "Perfil",
-            style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,
-            color =  androidx.compose.material3.MaterialTheme.colorScheme.primary,
+            color =  MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp),
         )
-        androidx.compose.material3.Text(
+        Text(
             text = "TIEMPO TOTAL APRENDIENDO",
-            style = androidx.compose.material3.MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Left,
             modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp),
         )
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
-            androidx.compose.material3.Text(
+            Text(
                 text = "10",
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
             )
-//            Spacer(modifier = Modifier.width(8.dp))
-            androidx.compose.material3.Text(
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(
                 text = "horas",
-                style = androidx.compose.material3.MaterialTheme.typography.titleSmall,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleSmall,
                 textAlign = TextAlign.Center,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(vertical = 11.dp)
             )
         }
-        androidx.compose.material3.Text(
+        Text(
             text = "NIVELES COMPLETADOS",
-            style = androidx.compose.material3.MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Left,
             modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp),
         )
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
-            androidx.compose.material3.Text(
+            Text(
                 text = "3",
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
             )
-//            Spacer(modifier = Modifier.width(8.dp))
-            androidx.compose.material3.Text(
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(
                 text = "niveles",
-                style = androidx.compose.material3.MaterialTheme.typography.titleSmall,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleSmall,
                 textAlign = TextAlign.Center,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(vertical = 11.dp)
             )
         }
-        androidx.compose.material3.Text(
+        Text(
             text = "PALABRAS CONSULTADAS",
-            style = androidx.compose.material3.MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Left,
             modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp),
         )
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
-            androidx.compose.material3.Text(
+            Text(
                 text = "5",
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
             )
-//            Spacer(modifier = Modifier.width(8.dp))
-            androidx.compose.material3.Text(
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(
                 text = "palabras",
-                style = androidx.compose.material3.MaterialTheme.typography.titleSmall,
-                // style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleSmall,
                 textAlign = TextAlign.Center,
-                color =  androidx.compose.material3.MaterialTheme.colorScheme.onPrimaryContainer,
+                color =  MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(vertical = 11.dp)
             )
         }
         Spacer(modifier = Modifier.width(25.dp))
-
+        Text(
+            text = "Configuración",
+            style = MaterialTheme.typography.titleMedium,
+            textAlign = TextAlign.Left,
+            color =  MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp),
+        )
+        Row(modifier = Modifier) {
+            Text(
+                text = "Notificaciones",
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Left,
+                modifier = Modifier.padding(vertical = 13.5.dp, horizontal = 20.dp),
+            )
+            val checkedState = remember { mutableStateOf(true) }
+//            var placeHolderN: Boolean
+//            Spacer(modifier = Modifier.width(20.dp))
+            Switch(
+                checked = checkedState.value,
+                onCheckedChange = { checkedState.value = false },
+//                modifier = Modifier.padding(vertical = 10.dp)
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = md_theme_light_primary,
+                    uncheckedThumbColor = md_theme_light_onSurfaceVariant,
+                    checkedTrackColor = md_theme_light_checkedTrack,
+                    uncheckedTrackColor = md_theme_light_outline
+                )
+            )
+        }
+//        Spacer(modifier = Modifier.width(50.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.tertiary
+                ),
+                modifier = Modifier.padding(vertical = 30.dp),
+                shape = RoundedCornerShape(12.dp),
+                onClick = { /*TODO: Session Log Out*/ }
+            ) {
+                Text(
+                    text = "CERRAR SESIÓN",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+        }
     }
 }
 
