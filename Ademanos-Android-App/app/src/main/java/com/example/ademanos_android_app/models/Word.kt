@@ -4,5 +4,5 @@ class Word (
     var id : String,
     var name : String,
     var description : String,
-    var videoUrl : String
+    var media : String
         )

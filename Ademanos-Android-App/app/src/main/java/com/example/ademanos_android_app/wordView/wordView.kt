@@ -30,7 +30,7 @@ fun WordView(word : Word){
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()
         ){
-            MediaItem(word.videoUrl, modifier = Modifier.padding(vertical = 10.dp))
+            MediaItem(word.media, modifier = Modifier.padding(vertical = 10.dp))
         }
     }
 }
