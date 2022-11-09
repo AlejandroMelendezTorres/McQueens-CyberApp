@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
+import com.example.ademanos_android_app.wordView.WordView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
     AdemanosAndroidAppTheme {
         val dictionaryTabScreen = BottomNavScreen(
             "Dictionary Tab", R.drawable.book_solid
-        ) { }
+        ) { WordView(TEST_WORD) }
 
         val levelTabScreen = BottomNavScreen(
             "Level Tab", R.drawable.gamepad_solid
