@@ -12,6 +12,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.ademanos_android_app.STATS_TEMP
+import com.example.ademanos_android_app.models.Stats
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 import md_theme_light_checkedTrack
 import md_theme_light_onSurfaceVariant
@@ -20,7 +22,8 @@ import md_theme_light_primary
 
 @Composable
 fun ProfileTab(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    stats: Stats
 ){
     Column(modifier = modifier) {
         Text(
@@ -50,7 +53,7 @@ fun ProfileTab(
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = "10",
+                text = stats.hours.toString(),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
@@ -84,7 +87,7 @@ fun ProfileTab(
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = "3",
+                text = STATS_TEMP.levels.toString(),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
@@ -118,7 +121,7 @@ fun ProfileTab(
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = "5",
+                text = STATS_TEMP.words.toString(),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
@@ -157,6 +160,7 @@ fun ProfileTab(
                     checkedTrackColor = md_theme_light_checkedTrack,
                     uncheckedTrackColor = md_theme_light_outline
                 )
+
             )
         }
         Column(
@@ -164,7 +168,7 @@ fun ProfileTab(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.tertiary
                 ),
                 modifier = Modifier.padding(vertical = 30.dp),
@@ -186,6 +190,6 @@ fun ProfileTab(
 @Composable
 fun DefaultPreview() {
     AdemanosAndroidAppTheme {
-        ProfileTab(Modifier)
+        ProfileTab(Modifier, stats = STATS_TEMP)
     }
 }
