@@ -2,6 +2,7 @@ package com.example.ademanos_android_app
 
 import com.example.ademanos_android_app.models.Question
 import com.example.ademanos_android_app.models.Quiz
+import com.example.ademanos_android_app.models.Stats
 import com.example.ademanos_android_app.models.Word
 import com.example.ademanos_android_app.wordView.WordView
 
@@ -34,6 +35,12 @@ val TEST_QUIZ = Quiz(
     "Quiz de prueba",
     "Esta es una prueba",
     arrayOf(TEST_QUESTION_0,TEST_QUESTION_1,TEST_QUESTION_2)
+)
+
+val STATS_TEMP = Stats(
+    11,
+    4,
+    6
 )
 
 val TEST_WORD = Word("test","Uno","El numero uno", TEST_IMAGE)

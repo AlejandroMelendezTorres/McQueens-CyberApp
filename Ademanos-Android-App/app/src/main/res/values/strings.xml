@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Ademanos-Android-App</string>
+    <string name="title_activity_profile_tab">profileTab</string>
     <string name="app_title">AdeManos</string>
     <string name="email_field_label">Email</string>
     <string name="password_field_label">Contraseña</string>

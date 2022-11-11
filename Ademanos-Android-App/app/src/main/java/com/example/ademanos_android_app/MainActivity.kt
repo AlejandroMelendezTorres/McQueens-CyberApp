@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import com.example.ademanos_android_app.profileTab.ProfileTab
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ademanos_android_app.components.NavigationManager
@@ -57,6 +58,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
                 }
             }
         }
+        
         val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen)
         Scaffold(
             bottomBar = {
