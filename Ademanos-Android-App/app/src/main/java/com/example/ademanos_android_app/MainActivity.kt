@@ -16,6 +16,7 @@ import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.ademanos_android_app.wordView.WordView
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -34,7 +35,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
         val user by appViewModel.currentUser.collectAsState(initial = null)
         val dictionaryTabScreen = BottomNavScreen(
             "Dictionary Tab", R.drawable.book_solid
-        ) { }
+        ) { WordView(TEST_WORD) }
 
         val levelTabScreen = BottomNavScreen(
             "Level Tab", R.drawable.gamepad_solid
