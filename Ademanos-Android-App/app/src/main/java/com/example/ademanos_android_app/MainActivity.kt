@@ -10,12 +10,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.ademanos_android_app.components.NavigationManager
 import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 import com.example.ademanos_android_app.wordView.WordView
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,9 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
+fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
     AdemanosAndroidAppTheme {
+        val user by appViewModel.currentUser.collectAsState(initial = null)
         val dictionaryTabScreen = BottomNavScreen(
             "Dictionary Tab", R.drawable.book_solid
         ) { WordView(TEST_WORD) }
@@ -39,13 +43,26 @@ fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
 
         val profileTabScreen = BottomNavScreen(
             "Profile Tab", R.drawable.user_solid
-        ) { LoginScreen() }
+        ) {
+            if (user == null) {
+                LoginScreen()
+            } else if (user!!.id == "loading") {
+                Text(text = "User is loading")
+            } else {
+                Column{
+                    Text("user is signed in")
+                    Button(onClick = {appViewModel.onSignOut()}) {
+                        Text("sign out")
+                    }
+                }
+            }
+        }
         val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen)
         Scaffold(
             bottomBar = {
                 BottomNavigation(
                     screens = screens,
-                    onSelected = { i -> appViewModel.selectScreen(i) },
+                    onSelected = { i -> NavigationManager.navigate(i, null) },
                     selected = appViewModel.selectedScreen
                 )
             },
@@ -78,5 +95,6 @@ fun AdemanosApp(appViewModel: AppViewModel = viewModel()) {
 data class BottomNavScreen(
     val label: String,
     @DrawableRes val icon: Int,
-    val component: @Composable (Modifier) -> Unit
+    val hidden: Boolean = false,
+    val component: @Composable (Modifier) -> Unit,
 )
