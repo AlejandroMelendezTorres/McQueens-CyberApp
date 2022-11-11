@@ -8,15 +8,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ademanos_android_app.AppViewModel
+import com.example.ademanos_android_app.TEST_QUIZ
 import com.example.ademanos_android_app.models.Quiz
 
 @Composable
 fun LevelScreen(
     quiz: Quiz,
     levelViewModel: LevelViewModel = viewModel(),
-    appViewModel: AppViewModel = viewModel(),
+    appViewModel: AppViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ){
     Column(modifier = modifier
@@ -31,7 +33,7 @@ fun LevelScreen(
                     if (result != null) {
                         var finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
                         if (finishedLevel){
-                            /*CURRENTLY THE APP CRASHES HERE*/
+                            levelViewModel.restartQuiz() //Temporal to avoid crash
                             /*TODO: MARK LEVEL AS COMPLETE AND RETURN TO LEVEL SELECTION*/
                         }
                     }
