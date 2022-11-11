@@ -11,8 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ademanos_android_app.AppViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ademanos_android_app.R
 import com.example.ademanos_android_app.components.AdemanosButton
 import com.example.ademanos_android_app.components.AdemanosTextField
@@ -20,8 +19,7 @@ import com.example.ademanos_android_app.components.AdemanosTextField
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    appViewModel: AppViewModel = viewModel(),
-    loginViewModel: LoginViewModel = viewModel()
+    loginViewModel: LoginViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
@@ -43,7 +41,7 @@ fun LoginScreen(
             onValueChange = { loginViewModel.onEmailChange(it) },
             placeholder = stringResource(id = R.string.email_field_label),
             isError = !loginViewModel.emailValid,
-            enabled = !appViewModel.loginLoading,
+            enabled = !loginViewModel.loading,
             supportingText = {
                 if (!loginViewModel.emailValid) {
                     Text(stringResource(id = R.string.email_supporting_text))
@@ -60,7 +58,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation(),
             isError = !loginViewModel.passwordValid,
-            enabled = !appViewModel.loginLoading,
+            enabled = !loginViewModel.loading,
             supportingText = {
                 if (!loginViewModel.passwordValid) {
                     Text(stringResource(id = R.string.password_supporting_text))
@@ -70,12 +68,12 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(15.dp))
         AdemanosButton(
             onClick = {
-            appViewModel.onLogin(loginViewModel.email, loginViewModel.password)
+            loginViewModel.onLogin()
             },
             modifier = Modifier.fillMaxWidth(),
-            enabled = loginViewModel.buttonEnabled && !appViewModel.loginLoading,
+            enabled = loginViewModel.buttonEnabled && !loginViewModel.loading,
         ) {
-            if (appViewModel.loginLoading) {
+            if (loginViewModel.loading) {
                 Text(stringResource(id = R.string.loading_label))
             } else {
                 Text(stringResource(id = R.string.login_button_label))

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "894698751071",
+    "project_id": "ademanos-f242e",
+    "storage_bucket": "ademanos-f242e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894698751071:android:e24d30550f8f50219047ea",
+        "android_client_info": {
+          "package_name": "com.example.ademanos_android_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894698751071-vubkl8ner75qivbe33ein7r2lk1fvqha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Hm7K0H6Mg4PruCpP5Ztgvs6SbS7kFDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894698751071-vubkl8ner75qivbe33ein7r2lk1fvqha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894698751071:android:a1a541390dd8fab09047ea",
+        "android_client_info": {
+          "package_name": "com.mcqueens.ademanos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894698751071-vubkl8ner75qivbe33ein7r2lk1fvqha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Hm7K0H6Mg4PruCpP5Ztgvs6SbS7kFDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894698751071-vubkl8ner75qivbe33ein7r2lk1fvqha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
