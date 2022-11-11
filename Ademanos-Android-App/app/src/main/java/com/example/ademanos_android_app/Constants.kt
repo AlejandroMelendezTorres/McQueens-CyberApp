@@ -6,8 +6,8 @@ import com.example.ademanos_android_app.models.Stats
 import com.example.ademanos_android_app.models.Word
 import com.example.ademanos_android_app.wordView.WordView
 
-const val TEST_IMAGE= "https://firebasestorage.googleapis.com/v0/b/ademanos-f242e.appspot.com/o/a.JPG?alt=media&token=9c50e555-f38d-421c-89e8-2ef35fd7aeb4"
-const val TEST_VIDEO="https://firebasestorage.googleapis.com/v0/b/ademanos-f242e.appspot.com/o/Amarillo_Web.m4v?alt=media&token=0637ad5b-f422-47a3-8682-acf8b0475483"
+const val TEST_IMAGE= "https://storage.googleapis.com/ademanos-f242e.appspot.com/LSM_Abecedario_Web/m.JPG"
+const val TEST_VIDEO="https://storage.googleapis.com/ademanos-f242e.appspot.com/LSM_Lugares_Web/Tienda_Web.m4v"
 
 val TEST_QUESTION_0 = Question(
     "test",

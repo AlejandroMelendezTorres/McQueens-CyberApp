@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -12,6 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.ademanos_android_app.AppViewModel
 import com.example.ademanos_android_app.STATS_TEMP
 import com.example.ademanos_android_app.models.Stats
 import com.example.ademanos_android_app.ui.theme.AdemanosAndroidAppTheme
@@ -23,8 +26,10 @@ import md_theme_light_primary
 @Composable
 fun ProfileTab(
     modifier: Modifier = Modifier,
-    stats: Stats
+    stats: Stats,
+    appViewModel: AppViewModel = hiltViewModel()
 ){
+    val user =  appViewModel.currentUser.collectAsState(initial = null)
     Column(modifier = modifier) {
         Text(
             text = "Perfil",
@@ -173,7 +178,7 @@ fun ProfileTab(
                 ),
                 modifier = Modifier.padding(vertical = 30.dp),
                 shape = RoundedCornerShape(12.dp),
-                onClick = { /*TODO: Session Log Out*/ }
+                onClick = {appViewModel.onSignOut()}
             ) {
                 Text(
                     text = "CERRAR SESIÓN",

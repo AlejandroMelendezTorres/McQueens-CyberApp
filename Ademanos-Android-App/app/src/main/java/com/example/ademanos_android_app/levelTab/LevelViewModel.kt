@@ -62,4 +62,8 @@ class LevelViewModel: ViewModel() {
         return false
     }
 
+    fun restartQuiz() {
+        _currentLevel=0
+    }
+
 }
