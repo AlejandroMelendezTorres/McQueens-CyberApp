@@ -87,7 +87,7 @@ fun ProfileTab(
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = STATS_TEMP.levels.toString(),
+                text = stats.levels.toString(),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
@@ -121,7 +121,7 @@ fun ProfileTab(
         Row(modifier = Modifier) {
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = STATS_TEMP.words.toString(),
+                text = stats.words.toString(),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
