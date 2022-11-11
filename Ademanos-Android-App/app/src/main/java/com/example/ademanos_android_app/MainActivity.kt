@@ -50,12 +50,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
             } else if (user!!.id == "loading") {
                 Text(text = "User is loading")
             } else {
-                Column{
-                    Text("user is signed in")
-                    Button(onClick = {appViewModel.onSignOut()}) {
-                        Text("sign out")
-                    }
-                }
+                ProfileTab(stats = STATS_TEMP)
             }
         }
         
