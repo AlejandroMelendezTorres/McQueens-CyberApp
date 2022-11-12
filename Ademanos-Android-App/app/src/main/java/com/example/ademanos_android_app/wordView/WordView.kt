@@ -12,24 +12,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.ademanos_android_app.components.MediaItem
+import com.example.ademanos_android_app.components.NavigationManager
 import com.example.ademanos_android_app.models.Word
 
 @Composable
-fun WordView(word : Word){
-    Column() {
-        Text(
-            text = word.name,
-            style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Left,
-            color = MaterialTheme.colorScheme.primary,
-            modifier =Modifier.padding(vertical = 10.dp, horizontal = 20.dp)
-        )
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize()
-        ){
-            MediaItem(word.media, modifier = Modifier.padding(vertical = 10.dp))
+fun WordView(){
+    if (NavigationManager.args is Word) {
+        Column() {
+            Text(
+                text = (NavigationManager.args as Word).name,
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Left,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp)
+            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                MediaItem((NavigationManager.args as Word).media, modifier = Modifier.padding(vertical = 10.dp))
+            }
         }
     }
 }

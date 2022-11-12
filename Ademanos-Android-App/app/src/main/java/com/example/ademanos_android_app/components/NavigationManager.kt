@@ -13,7 +13,7 @@ object NavigationManager {
     var args: Any? = null
     private set
 
-    fun navigate(screen: Int, args: Any?) {
+    fun navigate(screen: Int, args: Any? = null) {
         messages.value = NavigationState(screen, args)
         this.args = args
     }

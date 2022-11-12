@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import com.example.ademanos_android_app.profileTab.ProfileTab
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.ademanos_android_app.cardGrid.CategoryScreen
+import com.example.ademanos_android_app.cardGrid.DictionaryScreen
 import com.example.ademanos_android_app.components.NavigationManager
 import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
@@ -36,7 +38,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
         val user by appViewModel.currentUser.collectAsState(initial = null)
         val dictionaryTabScreen = BottomNavScreen(
             "Dictionary Tab", R.drawable.book_solid
-        ) { WordView(TEST_WORD) }
+        ) { DictionaryScreen() }
 
         val levelTabScreen = BottomNavScreen(
             "Level Tab", R.drawable.gamepad_solid
@@ -58,8 +60,24 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
                 }
             }
         }
+
+        val categoryTabScreen = BottomNavScreen(
+            "Category tab",
+            R.drawable.book_solid,
+            true,
+        ) {
+            CategoryScreen()
+        }
+
+        val wordTabScreen = BottomNavScreen(
+            "Word tab",
+            R.drawable.book_solid,
+            true,
+        ) {
+            WordView()
+        }
         
-        val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen)
+        val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen, categoryTabScreen, wordTabScreen)
         Scaffold(
             bottomBar = {
                 BottomNavigation(

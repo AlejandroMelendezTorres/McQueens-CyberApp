@@ -15,9 +15,10 @@ fun BottomNavigation(
     modifier: Modifier = Modifier
 ) {
     NavigationBar(
-        modifier = Modifier
+        modifier = modifier
     ) {
         for (i in screens.indices) {
+            if (screens[i].hidden) continue
             NavigationBarItem(
                 icon = {
                     Icon(
