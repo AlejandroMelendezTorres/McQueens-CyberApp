@@ -44,3 +44,9 @@ val STATS_TEMP = Stats(
 )
 
 val TEST_WORD = Word("test","Uno","El numero uno", TEST_IMAGE)
+
+val DICTIONARY_TAB = 0
+val QUIZ_TAB = 1
+val PROFILE_TAB = 2
+val CATEGORY_TAB = 3
+val WORD_TAB = 4

@@ -10,4 +10,7 @@
     <string name="password_supporting_text">Minimo 8 caracteres</string>
     <string name="login_failure_message">Ocurrió un error, verifica tu información</string>
     <string name="loading_label">Cargando...</string>
+    <string name="dictionary_title">Diccionario</string>
+    <string name="generic_error">Ocurrió un error</string>
+    <string name="retry">Reintentar</string>
 </resources>
