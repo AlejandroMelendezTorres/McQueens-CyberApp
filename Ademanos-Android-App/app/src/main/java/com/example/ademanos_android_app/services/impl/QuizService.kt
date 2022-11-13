@@ -1,24 +1,14 @@
 package com.example.ademanos_android_app.services.impl
 
-import com.example.ademanos_android_app.models.Category
 import com.example.ademanos_android_app.models.Question
 import com.example.ademanos_android_app.models.Quiz
 import com.example.ademanos_android_app.services.QuizService
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class QuizServiceImpl @Inject constructor(private val firestore: FirebaseFirestore) : QuizService {
-
-    override suspend fun getCategories(): List<Category?> {
-        return firestore
-            .collection("categories")
-            .get()
-            .await()
-            .documents.map<DocumentSnapshot?, Category?> { d -> d?.toObject<Category>() }
-    }
 
     override suspend fun getQuizzes(categoryId: String): List<Quiz?> {
         return firestore
