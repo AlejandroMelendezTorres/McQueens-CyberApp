@@ -19,13 +19,17 @@ fun LevelCard(
     onSelect: (result: Boolean?) -> Unit,
     modifier: Modifier = Modifier
 ){
+    var shortTitle=quizTitle
+    if (quizTitle.length>20){
+        shortTitle=quizTitle.slice(0..20)+"..."
+    }
     Column(modifier = modifier) {
         Text(
-            text = quizTitle,
-            style = MaterialTheme.typography.titleLarge,
+            text = shortTitle,
+            style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Left,
             color =  MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp),
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp)
         )
         Column(
             verticalArrangement = Arrangement.Center,

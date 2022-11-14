@@ -6,50 +6,86 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ademanos_android_app.AppViewModel
-import com.example.ademanos_android_app.TEST_QUIZ
+import com.example.ademanos_android_app.QUIZ_TAB
+import com.example.ademanos_android_app.R
+import com.example.ademanos_android_app.components.AdemanosButton
+import com.example.ademanos_android_app.components.NavigationManager
+import com.example.ademanos_android_app.components.SnackbarManager
 import com.example.ademanos_android_app.models.Quiz
 
 @Composable
 fun LevelScreen(
-    quiz: Quiz,
-    levelViewModel: LevelViewModel = viewModel(),
-    appViewModel: AppViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    levelViewModel: LevelViewModel = hiltViewModel()
 ){
-    Column(modifier = modifier
-        .fillMaxSize(),
-        ) {
-        Surface(
-            modifier= Modifier
-        ) {
-            LevelCard(quiz.title,
-                quiz.questions[levelViewModel.currentLevel],
-                { result ->
-                    if (result != null) {
-                        var finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
-                        if (finishedLevel){
-                            levelViewModel.restartQuiz() //Temporal to avoid crash
-                            /*TODO: MARK LEVEL AS COMPLETE AND RETURN TO LEVEL SELECTION*/
-                        }
-                    }
-                },
-                Modifier)
+    DisposableEffect(key1 = levelViewModel) {
+        levelViewModel.onStart()
+        onDispose { levelViewModel.onStop() }
+    }
 
-            if (levelViewModel.popupControl) {
-                PopupWindowDialog (
-                    result = { result ->
+    if (levelViewModel.loading) {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            CircularProgressIndicator()
+        }
+    } else if (levelViewModel.hasError) {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                stringResource(id = R.string.generic_error),
+                style = MaterialTheme.typography.titleSmall
+            )
+            Spacer(modifier = Modifier.height(5.1.dp))
+            AdemanosButton(onClick = { levelViewModel.onStart() }) {
+                Text(stringResource(id = R.string.retry))
+            }
+        }
+    } else {
+        val quiz = (NavigationManager.args as Quiz)
+        Column(modifier = modifier
+            .fillMaxSize(),
+        ) {
+            Surface(
+                modifier= Modifier
+            ) {
+                LevelCard(
+                    quiz.title,
+                    quiz.questions[levelViewModel.currentLevel],
+                    { result ->
                         if (result != null) {
-                            levelViewModel.evaluatePopupControl(result)
+                            val finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
+                            if (finishedLevel){
+                                /*TODO: MARK LEVEL AS COMPLETE IN DB*/
+                                SnackbarManager.showMessage("Nivel completado")
+                                levelViewModel.onStop()
+                                NavigationManager.navigate(QUIZ_TAB,null)
+                            }
                         }
                     },
-                    title = levelViewModel.popupText,
-                    buttonMessage = levelViewModel.popupButtonText
+                    Modifier
                 )
+
+                if (levelViewModel.popupControl) {
+                    PopupWindowDialog (
+                        result = { result ->
+                            if (result != null) {
+                                levelViewModel.evaluatePopupControl(result)
+                            }
+                        },
+                        title = levelViewModel.popupText,
+                        buttonMessage = levelViewModel.popupButtonText
+                    )
+                }
             }
         }
     }

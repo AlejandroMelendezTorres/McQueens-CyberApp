@@ -13,28 +13,29 @@ val TEST_QUESTION_0 = Question(
     "test",
     TEST_VIDEO,
     "¿Qué numero es este 0?",
-    arrayOf("1","2","3","4"),
+    listOf("1","2","3","4"),
     0
 )
 val TEST_QUESTION_1 = Question(
     "test",
     TEST_IMAGE,
     "¿Qué numero es este 1?",
-    arrayOf("1","2","3","4"),
+    listOf("1","2","3","4"),
     1
 )
 val TEST_QUESTION_2 = Question(
     "test",
     TEST_VIDEO,
     "¿Qué numero es este 2?",
-    arrayOf("1","2","3","4"),
+    listOf("1","2","3","4"),
     2
 )
 val TEST_QUIZ = Quiz(
     "test",
+    "test",
     "Quiz de prueba",
-    "Esta es una prueba",
-    arrayOf(TEST_QUESTION_0,TEST_QUESTION_1,TEST_QUESTION_2)
+    "Quiz de prueba",
+    listOf(TEST_QUESTION_0,TEST_QUESTION_1,TEST_QUESTION_2)
 )
 
 val STATS_TEMP = Stats(
@@ -45,8 +46,9 @@ val STATS_TEMP = Stats(
 
 val TEST_WORD = Word("test","Uno","El numero uno", TEST_IMAGE)
 
-val DICTIONARY_TAB = 0
-val QUIZ_TAB = 1
-val PROFILE_TAB = 2
-val CATEGORY_TAB = 3
-val WORD_TAB = 4
+const val DICTIONARY_TAB = 0
+const val QUIZ_TAB = 1
+const val PROFILE_TAB = 2
+const val CATEGORY_TAB = 3
+const val WORD_TAB = 4
+const val LEVEL_TAB = 5

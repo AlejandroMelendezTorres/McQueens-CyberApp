@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ademanos_android_app.cardGrid.CategoryScreen
 import com.example.ademanos_android_app.cardGrid.DictionaryScreen
+import com.example.ademanos_android_app.cardGrid.QuizzScreen
 import com.example.ademanos_android_app.components.NavigationManager
 import com.example.ademanos_android_app.levelTab.LevelScreen
 import com.example.ademanos_android_app.loginScreen.LoginScreen
@@ -40,9 +41,16 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
             "Dictionary Tab", R.drawable.book_solid
         ) { DictionaryScreen() }
 
+        val quizTabScreen = BottomNavScreen(
+            "Quiz Tab",
+            R.drawable.gamepad_solid
+        ) { QuizzScreen() }
+
         val levelTabScreen = BottomNavScreen(
-            "Level Tab", R.drawable.gamepad_solid
-        ) { LevelScreen(TEST_QUIZ) }
+            "Level Tab",
+            R.drawable.gamepad_solid,
+            true
+        ) { LevelScreen() }
 
         val profileTabScreen = BottomNavScreen(
             "Profile Tab", R.drawable.user_solid
@@ -72,7 +80,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
             WordView()
         }
         
-        val screens = listOf(dictionaryTabScreen, levelTabScreen, profileTabScreen, categoryTabScreen, wordTabScreen)
+        val screens = listOf(dictionaryTabScreen, quizTabScreen, profileTabScreen, categoryTabScreen, wordTabScreen,levelTabScreen)
         Scaffold(
             bottomBar = {
                 BottomNavigation(
@@ -86,7 +94,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
                     Snackbar(
                         modifier = Modifier.padding(12.dp),
                         shape = CutCornerShape(4.dp),
-                        containerColor = MaterialTheme.colorScheme.error,
+                        containerColor = MaterialTheme.colorScheme.secondary,
                         action = {
                             TextButton(
                                 onClick = { data.dismiss() },

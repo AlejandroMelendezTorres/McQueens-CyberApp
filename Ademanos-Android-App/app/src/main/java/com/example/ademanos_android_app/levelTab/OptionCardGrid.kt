@@ -31,7 +31,7 @@ fun OptionCardGrid(
                 .padding(top = 5.dp)
         ) {
             Text(
-                text = quizQuestion.prompt.uppercase(),
+                text = quizQuestion.prompt,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier,
                 color = MaterialTheme.colorScheme.primaryContainer
