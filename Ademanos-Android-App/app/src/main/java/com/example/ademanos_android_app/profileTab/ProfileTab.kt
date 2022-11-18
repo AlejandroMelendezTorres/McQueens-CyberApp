@@ -19,7 +19,6 @@ import md_theme_light_primary
 @Composable
 fun ProfileTab(
     modifier: Modifier = Modifier,
-//    user: com.example.ademanos_android_app.models.User?,
     appViewModel: AppViewModel = hiltViewModel()
 ){
     val user by appViewModel.currentUser.collectAsState(initial = null)
