@@ -18,12 +18,12 @@ class TrackingServiceImpl @Inject constructor(
     override suspend fun trackEvent(event: GenericEvent) {
         if (authService.currentUserId == "") return
         firestore.collection("events").document().set(event).await()
-        if (event is WordView) {
+        if (event.type == "wordView") {
             firestore.collection("users").document(event.uid)
-                .update("consultedWords", FieldValue.increment(1))
-        } else if (event is LevelCompleted && event.correct) {
+                .update("consultedWords", FieldValue.increment(1)).await()
+        } else if (event.type == "levelCompleted" && (event as LevelCompleted).correct) {
             firestore.collection("users").document(event.uid)
-                .update("completedLevels", FieldValue.increment(1))
+                .update("completedLevels", FieldValue.increment(1)).await()
         }
     }
 }
