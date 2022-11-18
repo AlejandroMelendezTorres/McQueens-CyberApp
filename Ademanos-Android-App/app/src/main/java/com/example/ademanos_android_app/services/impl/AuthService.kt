@@ -7,39 +7,46 @@ import javax.inject.Inject
 import com.example.ademanos_android_app.services.AuthService
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.tasks.await
 
 class AuthServiceImpl @Inject constructor(private val auth: FirebaseAuth, private val firestore: FirebaseFirestore) : AuthService {
     override val loggedIn: Boolean get() = auth.currentUser != null
     override val currentUserId: String
         get() = auth.currentUser?.uid.orEmpty()
+    private val _currentUser: MutableStateFlow<User?> = MutableStateFlow(null)
+    private lateinit var _registration: ListenerRegistration
+    override val currentUser get() = _currentUser
 
-    override val currentUser: Flow<User?>
-        get() = callbackFlow {
-            val listener = FirebaseAuth.AuthStateListener {
-                if (it.currentUser == null) {
-                    this.trySend(null)
-                } else {
-                    this.trySend(User("loading", "", "", "", Timestamp.now()))
-                    firestore.collection("users")
-                        .document(auth.currentUser!!.uid)
-                        .get()
-                        .addOnSuccessListener { doc ->
-                            this.trySend(doc.toObject<User>())
-                        }
-                        .addOnFailureListener { e ->
-                            Log.println(Log.ERROR, "DB", e.message.orEmpty())
-                            auth.signOut()
-                        }
+    private val listener = FirebaseAuth.AuthStateListener {
+        if (it.currentUser == null) {
+            _currentUser.value = null
+        } else {
+            _currentUser.value=User("loading", "", "", "",0,0, Timestamp.now())
+            _registration=firestore.collection("users")
+                .document(auth.currentUser!!.uid)
+                .addSnapshotListener{snapshot, e ->
+                    if (e!=null){
+                        Log.println(Log.ERROR, "DB", e.message.orEmpty())
+                        auth.signOut()
+                    }
+                    else{
+                        _currentUser.value=snapshot!!.toObject<User>()
+                    }
                 }
-            }
-            auth.addAuthStateListener(listener)
-            awaitClose { auth.removeAuthStateListener(listener) }
         }
+    }
+
+    init {
+        auth.addAuthStateListener(listener)
+    }
+
+    protected fun finalize(){
+        auth.removeAuthStateListener(listener)
+        _registration.remove()
+    }
 
     override suspend fun signIn(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).await()

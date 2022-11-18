@@ -22,5 +22,7 @@ data class User(
     val username: String = "",
     val email: String = "",
     val createdBy: String = "",
+    val completedLevels: Int = 0,
+    val consultedWords: Int = 0,
     val createdAt: Timestamp = Timestamp.now(),
 )
