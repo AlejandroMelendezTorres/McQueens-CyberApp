@@ -60,7 +60,7 @@ fun AdemanosApp(appViewModel: AppViewModel = hiltViewModel()) {
             } else if (user!!.id == "loading") {
                 Text(text = "User is loading")
             } else {
-                ProfileTab(stats = STATS_TEMP)
+                ProfileTab()
             }
         }
 
