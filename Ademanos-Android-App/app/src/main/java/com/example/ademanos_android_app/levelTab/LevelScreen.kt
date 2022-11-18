@@ -65,7 +65,6 @@ fun LevelScreen(
                         if (result != null) {
                             val finishedLevel = levelViewModel.evaluateQuizResult(result,quiz.questions.size)
                             if (finishedLevel){
-                                /*TODO: MARK LEVEL AS COMPLETE IN DB*/
                                 SnackbarManager.showMessage("Nivel completado")
                                 levelViewModel.onStop()
                                 NavigationManager.navigate(QUIZ_TAB,null)
