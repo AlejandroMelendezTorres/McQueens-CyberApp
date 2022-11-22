@@ -43,5 +43,7 @@
     <string name="test_quiz_correct_answer_5">CUCHARA</string>
     <string name="test_quiz_correct_answer_6">IMPRESORA</string>
     <string name="test_quiz_correct_answer_7">MESA</string>
+    <string name="tag_levels_completed">tag_levels_completed</string>
+    <string name="tag_words_consulted">tag_words_consulted</string>
 
 </resources>

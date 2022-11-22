@@ -47,15 +47,18 @@ class LoginTests {
     @Test
     fun incorrectLogin(){
         goToLoginScreen()
+        val emailLabel = composeTestRule.activity.getString(R.string.email_field_label)
+        val passwordLabel = composeTestRule.activity.getString(R.string.password_field_label)
+
         //Invalid email format
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.email_field_label), ignoreCase = true).performClick().performTextInput(composeTestRule.activity.getString(R.string.invalid_email_format))
+        composeTestRule.onNodeWithText(emailLabel, ignoreCase = true).performClick().performTextInput(composeTestRule.activity.getString(R.string.invalid_email_format))
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.email_supporting_text), ignoreCase = true).assertIsDisplayed()
         //Invalid password length
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.password_field_label), ignoreCase = true).performClick().performTextInput(composeTestRule.activity.getString(R.string.invalid_password_length))
+        composeTestRule.onNodeWithText(passwordLabel, ignoreCase = true).performClick().performTextInput(composeTestRule.activity.getString(R.string.invalid_password_length))
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.password_supporting_text), ignoreCase = true).assertIsDisplayed()
         //Non existent credentials
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.email_field_label), ignoreCase = true).performClick().performTextInput("")
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.password_field_label), ignoreCase = true).performClick().performTextInput("")
+        composeTestRule.onNodeWithText(emailLabel, ignoreCase = true).performClick().performTextInput("")
+        composeTestRule.onNodeWithText(passwordLabel, ignoreCase = true).performClick().performTextInput("")
         logIn(composeTestRule.activity.getString(R.string.incorrect_test_email),composeTestRule.activity.getString(R.string.incorrect_test_password))
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.incorrect_login_message), ignoreCase = true).assertIsDisplayed()
         restartState()
@@ -72,7 +75,11 @@ class LoginTests {
         }
         composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.correct_test_email), ignoreCase = true).assertIsDisplayed()
         logOut()
-        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.app_title), ignoreCase = true).assertIsDisplayed()
+        composeTestRule.waitUntil(timeout){
+            composeTestRule
+                .onAllNodesWithText(composeTestRule.activity.getString(R.string.app_title), ignoreCase = true)
+                .fetchSemanticsNodes().size == 1
+        }
         restartState()
     }
 
