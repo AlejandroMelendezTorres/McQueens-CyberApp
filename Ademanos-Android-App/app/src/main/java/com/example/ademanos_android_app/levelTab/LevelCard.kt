@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.style.TextAlign
 import com.example.ademanos_android_app.components.MediaItem
 import com.example.ademanos_android_app.models.Question
@@ -37,7 +39,10 @@ fun LevelCard(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            MediaItem(quizQuestion.media,modifier=Modifier.padding(vertical = 10.dp))
+            MediaItem(quizQuestion.media,modifier=Modifier
+                .padding(vertical = 10.dp)
+                .semantics { testTag = quizQuestion.media }
+            )
             OptionCardGrid(quizQuestion, onSelect,Modifier.padding(horizontal = 10.dp))
         }
     }
