@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable max-len */
-import * as admin from "firebase-admin";
+// import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import { doCreateUser, User, validateUsers } from "./util";
 

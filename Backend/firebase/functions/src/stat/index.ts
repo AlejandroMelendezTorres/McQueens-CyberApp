@@ -99,9 +99,50 @@ export const queryStats = functions.https.onCall(
         }, {});
 
         for (const k in res) {
-            // process dimensions and reduce
+            res[k] = res[k].reduce((r: { [i: string]: any }, doc: firestore.DocumentData) => {
+                const key = doc[data.dimensions[0]]
+                r[key] = r[key] || []
+                r[key].push(doc)
+                return r
+            }, {})
+
+            for (const d in res[k]) {
+                res[k][d] = res[k][d].reduce((r: { [i: string]: number }, doc: firestore.DocumentData) => {
+                    for (const m of data.measures) {
+                        if (m.op === "count") {
+                            if ("count" in r) {
+                                r["count"] += 1
+                            } else {
+                                r["count"] = 1
+                            }
+                        }
+                        else if (m.op === "avg") {
+                            const resKey = `${m.field}_avg`
+                            if (resKey in r) {
+                                if (m.field in doc) {
+                                    r[resKey] += doc[m.field]
+                                    r[`${resKey}_rolling`] += 1
+                                }
+                            } else {
+                                r[resKey] = doc[m.field]
+                                r[`${resKey}_rolling`] = 1
+                            }
+                        } else if (m.op === "sum") {
+                            const resKey = `${m.field}_sum`
+                            if (resKey in r) {
+                                if (m.field in doc) {
+                                    r[resKey] += doc[m.field]
+                                }
+                            } else {
+                                r[resKey] = doc[m.field]
+                            }
+                        }
+                    }
+
+                    return r
+                }, {})
+            }
         }
 
-        return { error: "not implemented" };
-        // return { status: 'ok', data: res }
+        return { status: 'ok', data: res }
     });
