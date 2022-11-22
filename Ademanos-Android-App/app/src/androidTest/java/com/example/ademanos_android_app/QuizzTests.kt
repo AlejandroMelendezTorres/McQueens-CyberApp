@@ -22,11 +22,11 @@ class QuizzTests {
 
         composeTestRule.waitUntil(timeout){
             composeTestRule
-                .onAllNodesWithText("Quizzes", ignoreCase = true)
+                .onAllNodesWithText(composeTestRule.activity.getString(R.string.quizz_title), ignoreCase = true)
                 .fetchSemanticsNodes().size == 1
         }
 
-        composeTestRule.onNodeWithText("QUIZZ HOGAR", ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quizz), ignoreCase = true).assertIsDisplayed()
 
     }
 
@@ -39,15 +39,15 @@ class QuizzTests {
     @Test
     fun correctVideoDisplays(){
         goToQuizzScreen()
-        composeTestRule.onNodeWithTag("https://storage.googleapis.com/ademanos-f242e.appspot.com/LSM_Hogar_Web/Gas_Web.m4v").performClick()
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.test_quiz_media_tag)).performClick()
         restartState()
     }
 
     @Test
     fun clickOnWrongOption(){
         goToQuizzScreen()
-        composeTestRule.onNodeWithText("VENTANA", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("RESPUESTA INCORRECTA", ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_incorrect_answer), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.incorrect_quiz_answer_message), ignoreCase = true).assertIsDisplayed()
         restartState()
     }
 
@@ -55,44 +55,44 @@ class QuizzTests {
     fun clickOnCorrectOption(){
         goToQuizzScreen()
         composeTestRule.onNodeWithText("GAS", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("RESPUESTA CORRECTA", ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.correct_quiz_answer_message), ignoreCase = true).assertIsDisplayed()
         restartState()
     }
 
     @Test
     fun goToNextLevel(){
         goToQuizzScreen()
-        composeTestRule.onNodeWithText("GAS", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("RESPUESTA CORRECTA", ignoreCase = true).assertIsDisplayed()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("IMPRESORA", ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_1), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.correct_quiz_answer_message), ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_2), ignoreCase = true).assertIsDisplayed()
         restartState()
     }
 
     @Test
     fun completeQuizz(){
         goToQuizzScreen()
-        composeTestRule.onNodeWithText("GAS", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_1), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("FOCO", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_2), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("CAJA", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_3), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("VASO", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_4), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("CUCHARA", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_5), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("IMPRESORA", ignoreCase = true).performClick()
-        composeTestRule.onNodeWithText("Continuar", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_6), ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.continue_quiz_button), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("MESA", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quiz_correct_answer_7), ignoreCase = true).performClick()
 
-        composeTestRule.onNodeWithText("Quizzes", ignoreCase = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.quizz_title), ignoreCase = true).assertIsDisplayed()
         restartState()
     }
 
@@ -104,28 +104,28 @@ class QuizzTests {
 
         composeTestRule.waitUntil(timeout){
             composeTestRule
-                .onAllNodesWithText("Diccionario", ignoreCase = true)
+                .onAllNodesWithText(composeTestRule.activity.getString(R.string.dictionary_title), ignoreCase = true)
                 .fetchSemanticsNodes().size == 1
         }
-        composeTestRule.onNodeWithTag("Quiz Tab").performClick()
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.quiz_tab_test_id)).performClick()
 
         composeTestRule.waitUntil(timeout){
             composeTestRule
-                .onAllNodesWithText("Quizzes", ignoreCase = true)
+                .onAllNodesWithText(composeTestRule.activity.getString(R.string.quizz_title), ignoreCase = true)
                 .fetchSemanticsNodes().size == 1
         }
-        composeTestRule.onNodeWithText("QUIZZ HOGAR", ignoreCase = true).performClick()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.test_quizz), ignoreCase = true).performClick()
 
         composeTestRule.waitUntil(timeout){
             composeTestRule
-                .onAllNodesWithText("Indica la opción correcta", ignoreCase = true)
+                .onAllNodesWithText(composeTestRule.activity.getString(R.string.test_quiz_prompt), ignoreCase = true)
                 .fetchSemanticsNodes().size == 1
         }
     }
 
     fun restartState(){
         // Start the app
-        composeTestRule.onNodeWithTag("Dictionary Tab").performClick()
+        composeTestRule.onNodeWithTag(composeTestRule.activity.getString(R.string.dictionary_tab_test_id)).performClick()
     }
 
 }

@@ -8,6 +8,8 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,7 +53,9 @@ fun WordView(modifier: Modifier = Modifier, wordViewModel: WordViewModel = hiltV
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                MediaItem(wordViewModel.word!!.media, modifier = Modifier.padding(vertical = 10.dp))
+                MediaItem(wordViewModel.word!!.media, modifier = Modifier
+                    .padding(vertical = 10.dp)
+                    .semantics { testTag = wordViewModel.word!!.media})
             }
         }
     }
