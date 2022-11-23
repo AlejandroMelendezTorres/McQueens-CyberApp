@@ -6,11 +6,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ademanos_android_app.AppViewModel
+import com.example.ademanos_android_app.R
 import md_theme_light_checkedTrack
 import md_theme_light_onSurfaceVariant
 import md_theme_light_outline
@@ -22,6 +26,7 @@ fun ProfileTab(
     appViewModel: AppViewModel = hiltViewModel()
 ){
     val user by appViewModel.currentUser.collectAsState(initial = null)
+    val context = LocalContext.current
 
     if (user == null){
         Column(
@@ -56,7 +61,8 @@ fun ProfileTab(
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Left,
                 color =  MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier.padding(vertical = 2.dp, horizontal = 20.dp),
+                modifier = Modifier
+                    .padding(vertical = 2.dp, horizontal = 20.dp),
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
@@ -91,6 +97,9 @@ fun ProfileTab(
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Left,
                     color =  MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.semantics {
+                        testTag=context.getString(R.string.tag_levels_completed)
+                    }
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
@@ -125,6 +134,9 @@ fun ProfileTab(
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Left,
                     color =  MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.semantics {
+                        testTag=context.getString(R.string.tag_words_consulted)
+                    }
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
