@@ -22,7 +22,7 @@ Jacobo Soffer Levy - A01028653
 
 <a name="down"></a>
 
-# 1. Descarga Ademanos
+## 1. Descarga Ademanos
 
 [Descarga Ademanos para Android](https://github.com/AlejandroMelendezTorres/McQueens-CyberApp/releases/tag/v1.0)
 
@@ -30,12 +30,12 @@ Jacobo Soffer Levy - A01028653
 
 <a name="usermanu"></a>
 
-# 2. Manual de Usuario
+## 2. Manual de Usuario
 
 <a name="instmanu"></a>
 
-# 3. Manual de Instalación
+## 3. Manual de Instalación
 
 <a name="vid"></a>
 
-# 4. Video de funcionalidad del sistema
+## 4. Video de funcionalidad del sistema
