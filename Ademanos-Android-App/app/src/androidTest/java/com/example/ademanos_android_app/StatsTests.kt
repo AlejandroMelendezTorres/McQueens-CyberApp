@@ -1,6 +1,5 @@
 package com.example.ademanos_android_app
 
-import android.util.Log
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.Rule
@@ -32,7 +31,7 @@ class StatsTests {
     }
 
     @Test
-    fun startsChangeAfterConsultingWord() {
+    fun statsChangeAfterConsultingWord() {
         goToStatsScreen()
         composeTestRule.waitUntil(timeout){
             composeTestRule
@@ -62,7 +61,7 @@ class StatsTests {
     }
 
     @Test
-    fun startsChangeAfterCompletingLevel() {
+    fun statsChangeAfterCompletingLevel() {
         goToStatsScreen()
         composeTestRule.waitUntil(timeout){
             composeTestRule
