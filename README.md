@@ -118,7 +118,8 @@ Para crear usuarios de Ademanos, ya sea administradores o para el uso de la apli
 Para visualizar las estadísticas de los usuarios de Ademanos, los pasos que se deben de seguir son los siguientes:
 
 1. Navegar a la pestaña “Estadísticas” utilizando la barra de navegación superior.
-2. 
+2. Seleccionar el tipo de estadísticas que se desean consultar.
+3. Visualizar la gráfica y la tabla.
 
 <a name="instmanu"></a>
 
