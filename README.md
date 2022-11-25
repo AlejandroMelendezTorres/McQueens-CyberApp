@@ -97,8 +97,6 @@ Lo primero que se tiene que hacer al ingresar a la página web es iniciar sesió
 
 #### Usuarios
 
-Para visualizar a los usuarios de Ademanos, simplemente navegar a la pestaña “Usuarios” utilizando la barra de navegación superior.
-
 Para crear usuarios de Ademanos, ya sea administradores o para el uso de la aplicación Android, los pasos que se deben de seguir son los siguientes:
 
 1. Navegar a la pestaña “Crear Usuarios” utilizando la barra de navegación superior.
@@ -115,11 +113,16 @@ Para crear usuarios de Ademanos, ya sea administradores o para el uso de la apli
 
 #### Visualizar estadísticas
 
-Para visualizar las estadísticas de los usuarios de Ademanos, los pasos que se deben de seguir son los siguientes:
+Para visualizar las estadísticas generales de los usuarios de Ademanos, los pasos que se deben de seguir son los siguientes:
 
 1. Navegar a la pestaña “Estadísticas” utilizando la barra de navegación superior.
-2. Seleccionar el tipo de estadísticas que se desean consultar.
-3. Visualizar la gráfica y la tabla.
+2. Visualizar gráficas y tablas con las estadísticas generales de los usuarios.
+
+Para visualizar las estadísticas individuales de los usuarios de Ademanos:
+
+1. Navegar a la pestaña “Usuarios” utilizando la barra de navegación superior.
+2. Seleccionar el usuario deseado.
+3. Visualizar gráficas y tablas.
 
 <a name="instmanu"></a>
 
